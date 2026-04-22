@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fidely — Fidelización simple para tu negocio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #1a1a1a;
+      --gray: #666;
+      --light: #f7f7f7;
+      --border: #e5e5e5;
+      --accent: #1a1a1a;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--black); background: #fff; line-height: 1.6; }
+
+    /* NAV */
+    nav { padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); }
+    .nav-logo { font-size: 18px; font-weight: 700; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { font-size: 14px; color: var(--gray); text-decoration: none; }
+    .nav-links a:hover { color: var(--black); }
+    .nav-cta { background: var(--black); color: #fff; padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none; }
+    .nav-cta:hover { background: #333; color: #fff; }
+
+    /* HERO */
+    .hero { max-width: 760px; margin: 0 auto; padding: 80px 40px 60px; text-align: center; }
+    .hero-badge { display: inline-block; font-size: 12px; font-weight: 600; background: var(--light); border: 0.5px solid var(--border); border-radius: 99px; padding: 5px 14px; color: var(--gray); margin-bottom: 24px; letter-spacing: 0.04em; }
+    .hero h1 { font-size: 48px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.15; margin-bottom: 20px; }
+    .hero h1 span { color: var(--gray); }
+    .hero p { font-size: 18px; color: var(--gray); max-width: 520px; margin: 0 auto 36px; }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: var(--black); color: #fff; padding: 13px 28px; border-radius: 10px; font-size: 15px; font-weight: 500; text-decoration: none; }
+    .btn-primary:hover { background: #333; }
+    .btn-secondary { background: #fff; color: var(--black); padding: 13px 28px; border-radius: 10px; font-size: 15px; border: 0.5px solid var(--border); text-decoration: none; }
+    .btn-secondary:hover { background: var(--light); }
+
+    /* PAÍSES */
+    .countries { display: flex; gap: 8px; justify-content: center; margin-top: 20px; }
+    .country-pill { font-size: 12px; color: var(--gray); background: var(--light); border: 0.5px solid var(--border); border-radius: 99px; padding: 4px 12px; }
+
+    /* CÓMO FUNCIONA */
+    .section { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
+    .section-label { font-size: 11px; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+    .section h2 { font-size: 32px; font-weight: 700; letter-spacing: -0.8px; margin-bottom: 40px; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .step { padding: 24px; background: var(--light); border-radius: 14px; }
+    .step-num { font-size: 12px; font-weight: 700; color: var(--gray); margin-bottom: 12px; }
+    .step h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .step p { font-size: 14px; color: var(--gray); line-height: 1.6; }
+
+    /* BENEFICIOS */
+    .benefits { background: var(--light); }
+    .benefits-inner { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
+    .benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
+    .benefit { background: #fff; border-radius: 14px; padding: 24px; border: 0.5px solid var(--border); }
+    .benefit-icon { width: 36px; height: 36px; background: var(--black); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+    .benefit-icon svg { width: 18px; height: 18px; stroke: #fff; fill: none; }
+    .benefit h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .benefit p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+    /* PARA QUIÉN */
+    .for-who { max-width: 900px; margin: 0 auto; padding: 60px 40px; }
+    .types { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+    .type-pill { font-size: 14px; background: var(--light); border: 0.5px solid var(--border); border-radius: 99px; padding: 8px 18px; }
+
+    /* DIVIDER */
+    hr { border: none; border-top: 0.5px solid var(--border); margin: 0 40px; }
+
+    /* FORM */
+    .form-section { max-width: 600px; margin: 0 auto; padding: 60px 40px; }
+    .form-section h2 { font-size: 28px; font-weight: 700; letter-spacing: -0.6px; margin-bottom: 8px; }
+    .form-section p { font-size: 15px; color: var(--gray); margin-bottom: 32px; }
+    .form { display: flex; flex-direction: column; gap: 14px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    label { font-size: 12px; font-weight: 500; color: var(--gray); display: block; margin-bottom: 5px; }
+    input, select, textarea { width: 100%; height: 42px; border-radius: 9px; border: 0.5px solid var(--border); padding: 0 14px; font-size: 14px; color: var(--black); background: #fff; outline: none; font-family: inherit; }
+    input:focus, select:focus, textarea:focus { border-color: var(--black); }
+    textarea { height: 90px; padding: 12px 14px; resize: none; }
+    .submit-btn { height: 48px; background: var(--black); color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 500; cursor: pointer; margin-top: 4px; }
+    .submit-btn:hover { background: #333; }
+    .submit-btn:disabled { background: #ccc; cursor: not-allowed; }
+    .form-note { font-size: 12px; color: #aaa; text-align: center; margin-top: 8px; }
+    .success-box { background: #e8f8f0; border-radius: 12px; padding: 24px; text-align: center; display: none; }
+    .success-box h3 { font-size: 17px; font-weight: 600; color: #1a7a4a; margin-bottom: 6px; }
+    .success-box p { font-size: 14px; color: #2d6a4f; }
+
+    /* FOOTER */
+    footer { padding: 32px 40px; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo { font-size: 15px; font-weight: 700; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { font-size: 13px; color: var(--gray); text-decoration: none; }
+    .footer-copy { font-size: 12px; color: #aaa; }
+
+    @media (max-width: 680px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 48px 20px 40px; }
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 16px; }
+      .section, .benefits-inner, .for-who, .form-section { padding: 40px 20px; }
+      .steps { grid-template-columns: 1fr; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 16px; text-align: center; padding: 24px 20px; }
+      .footer-links { justify-content: center; }
+      hr { margin: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Fidely</div>
+    <div class="nav-links">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#para-quien">Para quién</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#contacto" class="nav-cta">Quiero probarlo</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-badge">Disponible en España y Ecuador</div>
+    <h1>Fideliza a tus clientes <span>sin complicaciones</span></h1>
+    <p>Olvida las tarjetas de papel. Tus clientes acumulan puntos escaneando un QR — sin apps, sin registro, sin fricción.</p>
+    <div class="hero-btns">
+      <a href="#contacto" class="btn-primary">Quiero probarlo gratis</a>
+      <a href="#como-funciona" class="btn-secondary">Ver cómo funciona</a>
+    </div>
+    <div class="countries">
+      <span class="country-pill">🇪🇸 España</span>
+      <span class="country-pill">🇪🇨 Ecuador</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="section" id="como-funciona">
+    <div class="section-label">Cómo funciona</div>
+    <h2>Tres pasos, menos de 10 segundos</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>El cliente escanea el QR</h3>
+        <p>Pones el QR del día en el mostrador. El cliente lo escanea con la cámara del móvil, sin descargar nada.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Se suma un sello automáticamente</h3>
+        <p>El sistema reconoce al cliente y le suma un sello. Ve su progreso en pantalla al instante.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Al completar, obtiene su recompensa</h3>
+        <p>Cuando llega al objetivo aparece un código de canje. Tu empleado lo confirma y listo.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="benefits">
+    <div class="benefits-inner">
+      <div class="section-label">Por qué elegirlo</div>
+      <h2>Simple para ti, invisible para el cliente</h2>
+      <div class="benefits-grid">
+        <div class="benefit">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <h3>Sin apps ni registro</h3>
+          <p>El cliente solo necesita escanear el QR con la cámara. No hay que descargar nada ni crear cuenta.</p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <h3>Panel de administración</h3>
+          <p>Ves las estadísticas de tu negocio en tiempo real — visitas, clientes recurrentes, canjes y más.</p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <h3>QR rotativo diario</h3>
+          <p>El código cambia cada día automáticamente. Solo quien está físicamente en el local puede acumular puntos.</p>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3>Personalizable</h3>
+          <p>Elige los colores de tu negocio, el número de sellos y la recompensa que quieras ofrecer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="for-who" id="para-quien">
+    <div class="section-label">Para quién</div>
+    <h2>Hecho para negocios locales</h2>
+    <p style="color:var(--gray);font-size:15px;margin-top:8px;margin-bottom:20px">Si tienes clientes que repiten, tienes todo lo que necesitas para empezar.</p>
+    <div class="types">
+      <span class="type-pill">☕ Cafeterías</span>
+      <span class="type-pill">🍺 Bares</span>
+      <span class="type-pill">🍽️ Restaurantes</span>
+      <span class="type-pill">✂️ Peluquerías</span>
+      <span class="type-pill">💅 Esmalterías</span>
+      <span class="type-pill">🛒 Tiendas locales</span>
+      <span class="type-pill">🏋️ Gimnasios</span>
+      <span class="type-pill">+ cualquier negocio con clientes habituales</span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="form-section" id="contacto">
+    <h2>¿Te interesa para tu negocio?</h2>
+    <p>Cuéntanos un poco sobre tu negocio y nos ponemos en contacto contigo en menos de 24 horas.</p>
+
+    <div class="form" id="contact-form">
+      <div class="form-row">
+        <div>
+          <label>Nombre del negocio *</label>
+          <input type="text" id="biz-name" placeholder="Ej: Bar Pepe" required>
+        </div>
+        <div>
+          <label>Tipo de negocio *</label>
+          <select id="biz-type">
+            <option value="">Selecciona...</option>
+            <option>Cafetería</option>
+            <option>Bar</option>
+            <option>Restaurante</option>
+            <option>Peluquería</option>
+            <option>Esmaltería</option>
+            <option>Tienda local</option>
+            <option>Gimnasio</option>
+            <option>Otro</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>País *</label>
+          <select id="biz-country">
+            <option value="">Selecciona...</option>
+            <option>España</option>
+            <option>Ecuador</option>
+          </select>
+        </div>
+        <div>
+          <label>Ciudad *</label>
+          <input type="text" id="biz-city" placeholder="Ej: Madrid">
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Tu nombre *</label>
+          <input type="text" id="contact-name" placeholder="Nombre completo">
+        </div>
+        <div>
+          <label>Teléfono o email *</label>
+          <input type="text" id="contact-info" placeholder="Para contactarte">
+        </div>
+      </div>
+      <div>
+        <label>¿Algo que quieras contarnos? (opcional)</label>
+        <textarea id="contact-msg" placeholder="Número de clientes aproximado, horario, dudas..."></textarea>
+      </div>
+      <button class="submit-btn" id="submit-btn" onclick="submitForm()">Enviar solicitud</button>
+      <p class="form-note">Sin compromiso. Te responderemos en menos de 24 horas.</p>
+    </div>
+
+    <div class="success-box" id="success-box">
+      <h3>¡Solicitud recibida!</h3>
+      <p>Gracias por tu interés. Nos pondremos en contacto contigo muy pronto.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Fidely</div>
+    <div class="footer-links">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div class="footer-copy">© 2026</div>
+  </footer>
+
+  <script>
+    async function submitForm() {
+      const fields = {
+        biz_name: document.getElementById('biz-name').value.trim(),
+        biz_type: document.getElementById('biz-type').value,
+        country: document.getElementById('biz-country').value,
+        city: document.getElementById('biz-city').value.trim(),
+        contact_name: document.getElementById('contact-name').value.trim(),
+        contact_info: document.getElementById('contact-info').value.trim(),
+        message: document.getElementById('contact-msg').value.trim()
+      }
+
+      if (!fields.biz_name || !fields.biz_type || !fields.country || !fields.city || !fields.contact_name || !fields.contact_info) {
+        alert('Por favor rellena todos los campos obligatorios.')
+        return
+      }
+
+      const btn = document.getElementById('submit-btn')
+      btn.disabled = true
+      btn.textContent = 'Enviando...'
+
+      try {
+        const res = await fetch('https://fidelizacion-backend-production.up.railway.app/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(fields)
+        })
+
+        if (res.ok) {
+          document.getElementById('contact-form').style.display = 'none'
+          document.getElementById('success-box').style.display = 'block'
+        } else {
+          throw new Error()
+        }
+      } catch {
+        btn.disabled = false
+        btn.textContent = 'Enviar solicitud'
+        alert('Hubo un error al enviar. Inténtalo de nuevo.')
+      }
+    }
+  </script>
+</body>
+</html>
